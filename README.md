@@ -2,5 +2,5 @@
 A basic music visualizer.
 
 
-* Demo:
+# DEMO:
 ![alt tag](http://i.imgur.com/iAiENNO.png)
