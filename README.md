@@ -1,5 +1,5 @@
 # mvir
-A basic music visualizer.
+A basic music visualizer written in python.
 
 
 # DEMO:
