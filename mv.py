@@ -36,6 +36,7 @@ class Player:
         self.song_length = self.wf.getnframes() / self.chunk_size
         while True:
             try:
+                print(self.song_length, self.frame)
                 self.frame += 1
                 self.stream.write(data)
                 data = self.wf.readframes(self.chunk_size)
@@ -51,7 +52,7 @@ class Player:
                         self.frame = 0
                     else:
                         self.song = 0
-                        self.frmae = 0
+                        self.frame = 0
                     self.wf = wave.open(self.player_stack(self.song)[1], 'rb')
                     self.stream = p.open(format=p.get_format_from_width(self.wf.getsampwidth()),
                              channels=self.wf.getnchannels(),
@@ -95,6 +96,7 @@ class Player:
             if self.pause:
                 self.pause = False
                 self.wf = wave.open(self.player_stack(self.song)[1], 'rb')
+                p = pyaudio.PyAudio()
                 self.stream = p.open(format=p.get_format_from_width(self.wf.getsampwidth()),
                         channels=self.wf.getnchannels(),
                         rate=self.wf.getframerate(),
