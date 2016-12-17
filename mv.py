@@ -47,7 +47,7 @@ class Player:
                         _thread.start_new_thread(self.tk_widget, ())
                     except:
                         print(666)
-                elif self.frame == (self.song_length) or self.switch:
+                elif self.frame == int(self.song_length) or self.switch:
                     if self.song != self.player_stack()[0] - 1:
                         self.song += 1
                         self.frame = 0
