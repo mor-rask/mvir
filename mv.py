@@ -1,3 +1,4 @@
+#!python3
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import tkinter
 import _thread , os
@@ -10,7 +11,7 @@ import matplotlib.animation
 
 
 class Player:
-    'The switch song function is pretty bugged'
+
     def __init__(self, plot_bg = '#101010', line_fg = 'white',
                  line_width = 1.5, chunk_size = 256):
         matplotlib.use('TkAgg')
@@ -63,6 +64,7 @@ class Player:
             except Exception as ex:
                 print(' '.join(['Error:', ex]))
                 
+
     def tk_widget(self):
         root = tkinter.Tk()
         root.overrideredirect(True)
@@ -161,14 +163,14 @@ class Player:
         root.mainloop()
 
     def list_songs(self):
+        #pydub.AudioSegment.ffmpeg = "C:\\ffmpeg\\bin"
         file_list = os.listdir(os.getcwd())
         music_list = list()
         for i in range(len(file_list)):
             if file_list[i][-3:] == 'mp3':
                 song = pydub.AudioSegment.from_mp3(file_list[i])
-                song.export(os.getcwd(), format='wav')
-                os.system('del "%s"' % file_list[i])
-                music_list.append(file_list[i][:3] + 'wav')
+                song.export(file_list[i][:-3] + 'wav', format='wav')
+                music_list.append(file_list[i][:-3] + 'wav')
             elif file_list[i][-3:] == 'wav':
                 music_list.append(file_list[i])
         del music_list[music_list.index('void.wav')]
@@ -216,4 +218,3 @@ Y88b.          888           X88       888  888  888    Y888P
                     line_width = custom_line_width, chunk_size = custom_chunk_size)
     else:
         Player()
-  
