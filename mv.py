@@ -1,6 +1,6 @@
 #!python3
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-import tkinter
+import tkinter, tkinter.filedialog
 import _thread , os
 import time
 import win32api
@@ -104,6 +104,7 @@ class Player:
                         rate=self.wf.getframerate(),
                         output=True)
             else:self.pause = True
+            self.frame = 0
             def p1():
                 while self.pause:self.wf = wave.open('void.wav', 'rb')
             _thread.start_new(p1, ())
@@ -160,6 +161,7 @@ class Player:
 
         _thread.start_new_thread(frame_rate_update, ())
         frame_rate_label.pack(in_=button_frame_bottom, side='left')
+        root.update()
         root.mainloop()
 
     def list_songs(self):
